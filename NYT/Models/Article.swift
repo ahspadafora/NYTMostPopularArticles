@@ -32,8 +32,6 @@ struct Article: Decodable {
         let filteredMetaData: [MetaData] = self.media[0].metaData.filter { (metadata) -> Bool in
             metadata.format == "Standard Thumbnail"
         }
-        print(filteredMetaData.count)
-        print(filteredMetaData.first?.format)
         if let thumbnailMetaData = filteredMetaData.first {
             return URL(string: thumbnailMetaData.url)
         } else {

@@ -13,7 +13,10 @@ class ArticleFactory {
     func getApiKeyFromPlist() -> String? {
         if let path = Bundle.main.path(forResource: "ApiKey", ofType: "plist") {
             let apiKeyDict = NSDictionary(contentsOfFile: path)
-            guard let apiKey = apiKeyDict?.object(forKey: "ApiKey") as? String else { return nil }
+            guard let apiKey = apiKeyDict?.object(forKey: "ApiKey") as? String else {
+                print("\n \n getApiKeyFromPlist() failed when unwrapping apiKeyDict.object(forKey: \"ApiKey\") as? String")
+                return nil
+            }
             return apiKey
         }
         return nil

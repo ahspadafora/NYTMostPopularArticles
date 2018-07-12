@@ -22,8 +22,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
     
     @IBAction func menuPressed(_ sender: UIBarButtonItem) {
-        print("menu button has been pressed")
-        
         menuLeadingConstraint.constant = (menuLeadingConstraint.constant == 0) ? -240 : 0
     }
     
@@ -41,10 +39,6 @@ class ViewController: UIViewController {
         
         
     }
-    
-    @objc func presentMenu(){
-        
-    }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -60,7 +54,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.article = self.articles[indexPath.row]
         
         if let thumbnailUrl = cell.article?.getThumbnailUrl() {
-            UIImageView.getImageFrom(url: thumbnailUrl, indexPath: indexPath, callback: { (indexPathForLoadedImage, imageData) in
+            UIImageView.getImageFrom(url: thumbnailUrl, callback: { (imageData) in
                 DispatchQueue.main.async {
                     if cell.tag == indexPath.row {
                         cell.thumbnailImage.image = UIImage(data: imageData)

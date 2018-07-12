@@ -9,9 +9,9 @@
 import UIKit
 
 extension UIImageView {
-    static func getImageFrom(url: URL, indexPath: IndexPath, callback: @escaping (_ indexPath: IndexPath, _ imageData: Data) -> ()) {
+    static func getImageFrom(url: URL, callback: @escaping (_ imageData: Data) -> ()) {
         NetworkManager.shared.getData(from: url) { (data) in
-            callback(indexPath, data)
+            callback(data)
         }
     }
 }
